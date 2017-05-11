@@ -1,0 +1,51 @@
+{
+  "name": "halo-annotation",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/halojs/halo-annotation"
+  },
+  "main": "dist/index.js",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/halojs/halo-annotation/issues"
+  },
+  "scripts": {
+    "prepublish": "npm run compile",
+    "compile": "node_modules/.bin/babel src -d dist",
+    "test": "./node_modules/.bin/nyc ./node_modules/.bin/ava tests/index.js",
+    "codecov": "./node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "codecov": "^2.1.0",
+    "halo-router": "^1.0.9",
+    "halo-utils": "^1.0.0",
+    "koa": "^2.2.0",
+    "nyc": "^10.2.0",
+    "request": "^2.81.0"
+  },
+  "babel": {
+    "plugins": [
+      "transform-decorators-legacy",
+      "transform-es2015-modules-commonjs"
+    ]
+  },
+  "ava": {
+    "concurrency": 5,
+    "babel": "inherit",
+    "require": "babel-core/register"
+  },
+  "nyc": {
+    "exclude": [
+      "node_modules",
+      "tests/*.js",
+      "tests/**/*.js"
+    ]
+  }
+}
