@@ -25,7 +25,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "codecov": "^2.1.0",
     "halo-router": "^1.0.9",
-    "halo-utils": "^1.0.0",
+    "halo-utils": "^1.0.1",
     "koa": "^2.2.0",
     "nyc": "^10.2.0",
     "request": "^2.81.0"
