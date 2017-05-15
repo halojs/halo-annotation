@@ -24,9 +24,7 @@ export default function RequestParam(field = '', rules = '', label = '') {
                 value.push('')
             }
 
-            result = validator(field, label, value, rules)
-            
-            if (result === true) {
+            if (!(result = validator(field, label, value, rules))) {
                 await oldValue(ctx, next)
             } else {
                 throw new ValidationError(result)
@@ -42,7 +40,7 @@ function isAsyncFunction(func) {
 }
 
 function validator(field, label, value, rules) {
-    let result = {}
+    let result = null
 
     for (let item of rules) {
         let ruleObj, params, ruleName
@@ -68,5 +66,5 @@ function validator(field, label, value, rules) {
         }
     }
     
-    return Object.keys(result).length ? result : true
+    return result
 }
