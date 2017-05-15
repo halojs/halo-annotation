@@ -1,6 +1,6 @@
 {
   "name": "halo-annotation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/halojs/halo-annotation"
@@ -24,8 +24,7 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "codecov": "^2.1.0",
-    "halo-router": "^1.0.9",
-    "halo-utils": "^1.0.1",
+    "halo-router": "^1.1.1",
     "koa": "^2.2.0",
     "nyc": "^10.2.0",
     "request": "^2.81.0"
@@ -47,5 +46,10 @@
       "tests/*.js",
       "tests/**/*.js"
     ]
+  },
+  "dependencies": {
+    "halo-error": "^1.0.0",
+    "halo-parameter": "^1.0.3",
+    "halo-utils": "^1.0.2"
   }
 }

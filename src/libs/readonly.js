@@ -1,4 +1,4 @@
-export default function (target, name, descriptor) {
+export default function Readonly(target, name, descriptor) {
     descriptor.writable = false
     return descriptor
 }
