@@ -1,6 +1,6 @@
 {
   "name": "halo-annotation",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/halojs/halo-annotation"
@@ -50,6 +50,6 @@
   "dependencies": {
     "halo-error": "^1.0.0",
     "halo-parameter": "^1.0.4",
-    "halo-utils": "^1.0.2"
+    "halo-utils": "^1.0.3"
   }
 }
