@@ -16,7 +16,7 @@ export default function RequestParam(field = '', rules = '', label = '') {
             
             value = ctx.getParameters(field)
             
-            if (Array.isArray(value) && rules.includes('array')) {
+            if (rules.includes('array')) {
                 value = [value]
             }
             
