@@ -16,6 +16,10 @@ export default function RequestParam(field = '', rules = '', label = '') {
             
             value = ctx.getParameters(field)
             
+            if (Array.isArray(value) && rules.includes('array')) {
+                value = [value]
+            }
+            
             if (value.length === 0) {
                 if (!rules.includes('required')) {
                     return await oldValue(ctx, next)

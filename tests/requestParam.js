@@ -5,6 +5,7 @@ export default class {
     @RequestParam('id', 'required', 'ID')
     @RequestParam('userName', 'email', '邮箱')
     @RequestParam('password', 'required maxlength=16', '密码')
+    @RequestParam('arr', 'required array', '数组')
     async action(ctx, next) {
         ctx.body = 'requestParam'
     }

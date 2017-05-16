@@ -5,7 +5,7 @@ import error from 'halo-error'
 import Router from 'halo-router'
 import { Readonly } from '../src'
 import parameter from 'halo-parameter'
-import { generateRouterMaps } from 'halo-utils'
+import { rule, generateRouterMaps } from 'halo-utils'
 
 const req = request.defaults({
     json: true,
@@ -15,6 +15,8 @@ const req = request.defaults({
 test.before.cb((t) => {
     let app = new koa()
     let router = new Router({ dir: './tests' })
+
+    rule.addRule('array', (val, rule) => Array.isArray(val), '{{text}}格式不正确')
     
     router.maps(generateRouterMaps({ dir: './tests' }))
     router.get('/requestParam', 'requestParam.action')
@@ -108,6 +110,21 @@ test.cb('RequestParam, params id = 1, userName format does not match email', (t)
             code: 'invalid',
             message: '邮箱的格式不正确'
         }])
+        t.end()
+    })
+})
+
+test.cb('RequestParam, params arr is Array', (t) => {
+    req.post('/requestParam', {
+        body: {
+            id: 1,
+            userName: 'abc@google.com',
+            password: 1234,
+            arr: [1,2,3]
+        }
+    }, (err, res, body) => {
+        t.is(res.statusCode, 200)
+        t.is(body, 'requestParam')
         t.end()
     })
 })
