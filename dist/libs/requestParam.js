@@ -37,7 +37,7 @@ function RequestParam(field = '', rules = '', label = '') {
             }
 
             if (!(result = validator(field, label, value, rules))) {
-                await oldValue(ctx, next);
+                await oldValue.call(this, ctx, next);
             } else {
                 throw new _haloError.ValidationError(result);
             }
