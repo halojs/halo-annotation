@@ -17,7 +17,6 @@ test.before.cb((t) => {
     let router = new Router({ dir: './tests' })
 
     rule.addRule('array', (val, rule) => Array.isArray(val), '{{text}}格式不正确')
-    
     router.maps(generateRouterMaps({ dir: './tests' }))
     router.get('/requestParam', 'requestParam.action')
 
@@ -125,6 +124,36 @@ test.cb('RequestParam, params arr is Array', (t) => {
     }, (err, res, body) => {
         t.is(res.statusCode, 200)
         t.is(body, 'requestParam')
+        t.end()
+    })
+})
+
+test.cb('RequestHeader, no header', (t) => {
+    req.post('/requestHeader', (err, res, body) => {
+        t.is(res.statusCode, 422)
+        t.is(body.message, 'Validation Failed')
+        t.deepEqual(body.errors, [{
+            field: 'userid',
+            rule: 'required',
+            code: 'missing',
+            message: '请输入用户ID'
+        }])
+        t.end()
+    })
+})
+
+test.cb('RequestHeader, use headers', (t) => {
+    req({
+        method: 'post',
+        url: '/requestHeader',
+        headers: {
+            userId: 1,
+            password: 123456789,
+            arr: [1,2,3]
+        }
+    }, (err, res, body) => {
+        t.is(res.statusCode, 200)
+        t.is(body, 'requestHeader')
         t.end()
     })
 })

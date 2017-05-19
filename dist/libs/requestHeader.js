@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = RequestParam;
+exports.default = RequestHeader;
 
 var _haloUtils = require('halo-utils');
 
 var _haloError = require('halo-error');
 
-function RequestParam(field = '', rules = '', label = '') {
+function RequestHeader(field = '', rules = '', label = '') {
     rules = getRules(rules);
 
     return function (target, name, descriptor) {
@@ -22,7 +22,8 @@ function RequestParam(field = '', rules = '', label = '') {
         descriptor.value = async function (ctx, next) {
             let value, result;
 
-            value = ctx.getParameters(field);
+            value = ctx.headers[field];
+            value = value ? [value] : [];
 
             if (rules.includes('array')) {
                 value = [value];

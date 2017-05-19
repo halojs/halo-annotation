@@ -1,7 +1,7 @@
 import { rule } from 'halo-utils'
 import { ValidationError } from 'halo-error'
 
-export default function RequestParam(field = '', rules = '', label = '') {
+export default function RequestHeader(field = '', rules = '', label = '') {
     rules = getRules(rules)
 
     return function (target, name, descriptor) {
@@ -14,8 +14,9 @@ export default function RequestParam(field = '', rules = '', label = '') {
         descriptor.value = async function(ctx, next) {
             let value, result
             
-            value = ctx.getParameters(field)
-            
+            value = ctx.headers[field]
+            value = value ? [value] : []
+
             if (rules.includes('array')) {
                 value = [value]
             }
