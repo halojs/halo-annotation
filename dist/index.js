@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.RequestHeader = exports.RequestParam = exports.RequestUrl = exports.Readonly = undefined;
+exports.RequestMock = exports.RequestHeader = exports.RequestParam = exports.RequestUrl = exports.Readonly = undefined;
 
 var _readonly = require('./libs/readonly');
 
@@ -21,9 +21,14 @@ var _requestHeader = require('./libs/requestHeader');
 
 var _requestHeader2 = _interopRequireDefault(_requestHeader);
 
+var _RequestMock = require('./libs/RequestMock');
+
+var _RequestMock2 = _interopRequireDefault(_RequestMock);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Readonly = _readonly2.default;
 exports.RequestUrl = _requestUrl2.default;
 exports.RequestParam = _requestParam2.default;
 exports.RequestHeader = _requestHeader2.default;
+exports.RequestMock = _RequestMock2.default;

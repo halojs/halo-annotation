@@ -157,3 +157,36 @@ test.cb('RequestHeader, use headers', (t) => {
         t.end()
     })
 })
+
+
+test.cb('RequestMock, mock override ctx.body', (t) => {
+    req.get('/mockOverride', (err, res, body) => {
+        t.is(res.statusCode, 200)
+        t.deepEqual(body, {name: 1})
+        t.end()
+    })
+})
+
+test.cb('RequestMock, mock override by relative path', (t) => {
+    req.get('/mockOverrideRelativePath', (err, res, body) => {
+        t.is(res.statusCode, 200)
+        t.deepEqual(body, {name: 1})
+        t.end()
+    })
+})
+
+test.cb('RequestMock, mock not override ctx.body', (t) => {
+    req.get('/mockNotOverride', (err, res, body) => {
+        t.is(res.statusCode, 200)
+        t.is(body, 'this is a mock')
+        t.end()
+    })
+})
+
+test.cb('RequestMock, mock file not found', (t) => {
+    req.get('/mockNotFound', (err, res, body) => {
+        t.is(res.statusCode, 404)
+        t.is(body, 'mock not found')
+        t.end()
+    })
+})
