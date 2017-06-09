@@ -159,7 +159,7 @@ test.cb('RequestHeader, use headers', (t) => {
 })
 
 
-test.cb('RequestMock, mock override ctx.body', (t) => {
+test.cb('RequestMock, mock override ctx.body, return obj', (t) => {
     req.get('/mockOverride', (err, res, body) => {
         t.is(res.statusCode, 200)
         t.deepEqual(body, {name: 1})
@@ -167,8 +167,24 @@ test.cb('RequestMock, mock override ctx.body', (t) => {
     })
 })
 
-test.cb('RequestMock, mock override by relative path', (t) => {
-    req.get('/mockOverrideRelativePath', (err, res, body) => {
+test.cb('RequestMock, mock override ctx.body, return function', (t) => {
+    req.get('/mockOverrideReturnFunction', (err, res, body) => {
+        t.is(res.statusCode, 200)
+        t.deepEqual(body, {name: 1})
+        t.end()
+    })
+})
+
+test.cb('RequestMock, mock override ctx.body, return asyncFunction', (t) => {
+    req.get('/mockOverrideReturnAsyncFunction', (err, res, body) => {
+        t.is(res.statusCode, 200)
+        t.deepEqual(body, {name: 1})
+        t.end()
+    })
+})
+
+test.cb('RequestMock, mock override by relative path with env HALO_MOCK_DIR', (t) => {
+    req.get('/mockOverrideByEnv', (err, res, body) => {
         t.is(res.statusCode, 200)
         t.deepEqual(body, {name: 1})
         t.end()
@@ -186,7 +202,6 @@ test.cb('RequestMock, mock not override ctx.body', (t) => {
 test.cb('RequestMock, mock file not found', (t) => {
     req.get('/mockNotFound', (err, res, body) => {
         t.is(res.statusCode, 404)
-        t.is(body, 'mock not found')
         t.end()
     })
 })

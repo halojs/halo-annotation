@@ -13,7 +13,7 @@
   "scripts": {
     "prepublish": "npm run compile",
     "compile": "node_modules/.bin/babel src -d dist",
-    "test": "./node_modules/.bin/nyc ./node_modules/.bin/ava tests/index.js",
+    "test": "./node_modules/.bin/cross-env HALO_MOCK_DIR=./tests ./node_modules/.bin/nyc ./node_modules/.bin/ava tests/index.js",
     "codecov": "./node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov"
   },
   "devDependencies": {
@@ -49,5 +49,8 @@
       "tests/*.js",
       "tests/**/*.js"
     ]
+  },
+  "dependencies": {
+    "cross-env": "^5.0.1"
   }
 }
