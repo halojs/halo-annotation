@@ -21,9 +21,9 @@ var _requestHeader = require('./libs/requestHeader');
 
 var _requestHeader2 = _interopRequireDefault(_requestHeader);
 
-var _RequestMock = require('./libs/RequestMock');
+var _requestMock = require('./libs/requestMock');
 
-var _RequestMock2 = _interopRequireDefault(_RequestMock);
+var _requestMock2 = _interopRequireDefault(_requestMock);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31,4 +31,4 @@ exports.Readonly = _readonly2.default;
 exports.RequestUrl = _requestUrl2.default;
 exports.RequestParam = _requestParam2.default;
 exports.RequestHeader = _requestHeader2.default;
-exports.RequestMock = _RequestMock2.default;
+exports.RequestMock = _requestMock2.default;
