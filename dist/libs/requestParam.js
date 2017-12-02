@@ -23,17 +23,10 @@ function RequestParam(field = '', rules = '', label = '') {
             let value, result;
 
             value = ctx.getParameters(field);
+            value = rules.includes('array') ? [value] : value;
 
-            if (rules.includes('array')) {
-                value = [value];
-            }
-
-            if (value.length === 0) {
-                if (!rules.includes('required')) {
-                    return await oldValue.call(this, ctx, next);
-                }
-
-                value.push('');
+            if (!value && !rules.includes('required')) {
+                return await oldValue.call(this, ctx, next);
             }
 
             if (!(result = validator(field, label, value, rules))) {
