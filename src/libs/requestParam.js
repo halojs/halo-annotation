@@ -15,11 +15,12 @@ export default function RequestParam(field = '', rules = '', label = '') {
             let value, result
             
             value = ctx.getParameters(field)
-            value = rules.includes('array') ? [value] : value
 
             if (!value && !rules.includes('required')) {
                 return await oldValue.call(this, ctx, next)
             }
+
+            value = rules.includes('array') ? [value] : value;
 
             if (!(result = validator(field, label, value, rules))) {
                 await oldValue.call(this, ctx, next)
