@@ -15,12 +15,18 @@ export default function RequestParam(field = '', rules = '', label = '') {
             let value, result
             
             value = ctx.getParameters(field)
-
-            if (!value && !rules.includes('required')) {
-                return await oldValue.call(this, ctx, next)
+            
+            if (rules.includes('array')) {
+                value = [value]
             }
+            
+            if (value.length === 0) {
+                if (!rules.includes('required')) {
+                    return await oldValue.call(this, ctx, next)
+                }
 
-            value = rules.includes('array') ? [value] : value;
+                value.push('')
+            }
 
             if (!(result = validator(field, label, value, rules))) {
                 await oldValue.call(this, ctx, next)
@@ -55,9 +61,9 @@ function validator(field, label, value, rules) {
         } else {
             ruleName = item
         }
-
+        
         ruleObj = rule.getRule(ruleName)
-
+        
         if (!ruleObj.exec(value, params)) {
             result = {
                 field,

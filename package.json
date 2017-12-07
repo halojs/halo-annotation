@@ -1,6 +1,6 @@
 {
   "name": "halo-annotation",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/halojs/halo-annotation"
@@ -26,7 +26,7 @@
     "codecov": "^2.1.0",
     "cross-env": "^5.0.1",
     "halo-error": "^1.0.0",
-    "halo-parameter": "^1.0.7",
+    "halo-parameter": "^1.0.10",
     "halo-router": "^1.1.2",
     "halo-utils": "^1.0.3",
     "koa": "^2.2.0",
